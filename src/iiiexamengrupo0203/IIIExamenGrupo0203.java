@@ -24,8 +24,36 @@ public class IIIExamenGrupo0203 {
      */
     public static void main(String[] args) {
       
+        // Inicia Caso 3 - Mediator 
+        System.out.println("");
+        System.out.println("");
+        System.out.println("------------------------------------------");
+        System.out.println("Ejecucion del Caso 3 - Mediator");
+        System.out.println("------------------------------------------");
+        //Tipo de Ropa para lavar
+        TipoRopa seleccionada = TipoRopa.Gabardina;
+        
+        //Se carga la configuracion al mediador
+        ConfiguracionLavadora config = new ConfiguracionLavadora();
+        ParteTambor tambor = new ParteTambor(config);
+        config.addParte(tambor);
+        ParteCalentador calentador = new ParteCalentador(config);
+        config.addParte(calentador);
+        ParteValvula valvula = new ParteValvula(config);
+        config.addParte(valvula);
+        //Se imprime la configuracion
+        config.iniciar(seleccionada);
+        
+        // Fin Caso 3
+        
+        
         
         // Inicia Caso 4 - Chain of Responsability
+        System.out.println("");
+        System.out.println("");
+        System.out.println("------------------------------------------");
+        System.out.println("Ejecucion del Caso 4 - Chain of Responsability");
+        System.out.println("------------------------------------------");
         
         //Los tipos de archivos aceptados son "Texto", "Documento", "Imagen", "Audio", "Video"
         
@@ -75,22 +103,7 @@ public class IIIExamenGrupo0203 {
         System.out.println("\n");
         
         // Fin Caso 4
-        //Caso 3 Mediator ---------------------------------------------
-        System.out.println("Ejecucion del Caso 3 Mediator");
-        System.out.println("------------------------------------------");
-        //Tipo de Ropa para lavar
-        TipoRopa seleccionada = TipoRopa.Gabardina;
         
-        //Se carga la configuracion al mediador
-        ConfiguracionLavadora config = new ConfiguracionLavadora();
-        ParteTambor tambor = new ParteTambor(config);
-        config.addParte(tambor);
-        ParteCalentador calentador = new ParteCalentador(config);
-        config.addParte(calentador);
-        ParteValvula valvula = new ParteValvula(config);
-        config.addParte(valvula);
-        //Se imprime la configuracion
-        config.iniciar(seleccionada);
     }
     
 }
