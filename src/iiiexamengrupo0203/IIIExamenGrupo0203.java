@@ -28,6 +28,12 @@ public class IIIExamenGrupo0203 {
     public static void main(String[] args) {
         
         //Inicia Caso 2 - Command
+        System.out.println("");
+        System.out.println("");
+        System.out.println("------------------------------------------");
+        System.out.println("Ejecucion del Caso 2 - Command");
+        System.out.println("------------------------------------------");
+        
         
         //Crear cola
         ArrayList<ICommand> queue = new ArrayList<>();
@@ -112,37 +118,37 @@ public class IIIExamenGrupo0203 {
         manejadorImagen.setSiguienteHandler(manejadorAudio);
         manejadorAudio.setSiguienteHandler(manejadorVideo);
         
-        System.out.println("\n");
+        System.out.println("");
         archivo = new Archivo("ArchivoPruebaTexto.txt", "Texto");
         System.out.println("Procesando " +archivo.getNombre());
         manejadorTexto.procesar(archivo);
         
-        System.out.println("\n");
+        System.out.println("");
         
         archivo = new Archivo("ArchivoPruebaAudio.mp3", "Audio"); 
         System.out.println("Procesando " +archivo.getNombre());       
         manejadorTexto.procesar(archivo);
-        System.out.println("\n");
+        System.out.println("");
         
         archivo = new Archivo("ArchivoPruebaVideo.mpg", "Video"); 
         System.out.println("Procesando " +archivo.getNombre());       
         manejadorTexto.procesar(archivo);
-        System.out.println("\n");
+        System.out.println("");
         
         archivo = new Archivo("ArchivoPruebaDocumento.pdf", "Documento");
         System.out.println("Procesando " +archivo.getNombre());
         manejadorTexto.procesar(archivo);
-        System.out.println("\n");
-        
+        System.out.println("");
+       
         archivo = new Archivo("ArchivoPruebaImagen.jpg", "Imagen");
         System.out.println("Procesando " +archivo.getNombre());
         manejadorTexto.procesar(archivo);
-        System.out.println("\n");
+        System.out.println("");
         
         archivo = new Archivo("ArchivoPruebaOTRO.otro", "OTRO");
         System.out.println("Procesando " +archivo.getNombre());
         manejadorTexto.procesar(archivo);
-        System.out.println("\n");
+        System.out.println("");
         
         // Fin Caso 4
         
