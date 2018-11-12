@@ -11,7 +11,7 @@ package Caso3_MEDIATOR;
  */
 public abstract class ParteLavadora{
 
-    
+    protected boolean firstExec;
     private Panel mediator;
     
     public ParteLavadora(Panel m) {

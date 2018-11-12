@@ -11,18 +11,19 @@ package Caso3_MEDIATOR;
  */
 public class ParteValvula extends ParteLavadora {
     
-    boolean firstExec = true;
+    
 
     public ParteValvula(Panel m) {
         super(m);
+        super.firstExec = true;
     }
 
     public boolean isFirstExec() {
-        return firstExec;
+        return super.firstExec;
     }
 
     public void setFirstExec(boolean firtExec) {
-        this.firstExec = firtExec;
+        super.firstExec = firtExec;
     }
     
     

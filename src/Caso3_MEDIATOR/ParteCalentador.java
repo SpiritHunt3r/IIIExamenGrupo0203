@@ -13,19 +13,20 @@ import java.util.Random;
  */
 public class ParteCalentador extends ParteLavadora {
 
-     boolean firstExec = true;
+     
     
     
     public ParteCalentador(Panel m) {
         super(m);
+        super.firstExec = true;
     }
 
     public boolean isFirstExec() {
-        return firstExec;
+        return super.firstExec;
     }
 
     public void setFirstExec(boolean firtExec) {
-        this.firstExec = firtExec;
+        super.firstExec = firtExec;
     }
     
     

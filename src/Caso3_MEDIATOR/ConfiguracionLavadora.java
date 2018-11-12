@@ -66,6 +66,7 @@ public class ConfiguracionLavadora implements Panel {
               parte.exec(tp);
           }
       }
+      System.out.println("Eliminando Desechos...");
       System.out.println("Fin del proceso de Lavado");
   }
   

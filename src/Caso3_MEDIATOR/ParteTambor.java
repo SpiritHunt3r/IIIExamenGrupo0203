@@ -11,19 +11,19 @@ package Caso3_MEDIATOR;
  */
 public class ParteTambor extends ParteLavadora{
 
-     boolean firstExec = true;
     
     
     public ParteTambor(Panel m) {
         super(m);
+        super.firstExec = true;
     }
 
     public boolean isFirstExec() {
-        return firstExec;
+        return super.firstExec;
     }
 
     public void setFirstExec(boolean firtExec) {
-        this.firstExec = firtExec;
+        super.firstExec = firtExec;
     }
 
    
