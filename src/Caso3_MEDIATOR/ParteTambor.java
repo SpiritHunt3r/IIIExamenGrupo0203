@@ -11,37 +11,34 @@ package Caso3_MEDIATOR;
  */
 public class ParteTambor extends ParteLavadora{
 
+     boolean firstExec = true;
+    
+    
     public ParteTambor(Panel m) {
         super(m);
+    }
+
+    public boolean isFirstExec() {
+        return firstExec;
+    }
+
+    public void setFirstExec(boolean firtExec) {
+        this.firstExec = firtExec;
     }
 
    
 
     
-    public void show(TipoRopa tp) {
-        String mensaje = "Se utilizanran ";
-        switch (tp){
-            case Algodon:
-                mensaje += "4";
-                break;
-            case Jeans:
-                mensaje += "9";
-                break;
-            case Seda:
-                mensaje += "2";
-                break;
-            case Lino:
-                mensaje += "3";
-                break;
-            case Gabardina:
-                mensaje += "8";
-                break;
-            case Batista:
-                mensaje += "10";
-                break;
+    public void exec(TipoRopa tp) {
+        if (firstExec){
+            System.out.println("Tambor Encendido....");
+            System.out.println("Tambor Iniciado...");
+            System.out.println("Tambor Girando..........");
         }
-        mensaje += " Litros de agua para "+tp.toString();;
-        System.out.println(mensaje);
+        else{
+            System.out.println("Deteniendo Tambor..........");
+            System.out.println("Apagando Tambor....");
+        }
     }
 
     

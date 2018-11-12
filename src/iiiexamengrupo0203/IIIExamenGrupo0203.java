@@ -31,7 +31,7 @@ public class IIIExamenGrupo0203 {
         System.out.println("Ejecucion del Caso 3 - Mediator");
         System.out.println("------------------------------------------");
         //Tipo de Ropa para lavar
-        TipoRopa seleccionada = TipoRopa.Gabardina;
+        TipoRopa seleccionada = TipoRopa.Algodon;
         
         //Se carga la configuracion al mediador
         ConfiguracionLavadora config = new ConfiguracionLavadora();
