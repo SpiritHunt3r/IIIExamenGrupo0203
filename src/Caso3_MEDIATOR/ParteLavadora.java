@@ -24,5 +24,8 @@ public abstract class ParteLavadora{
     }
     
   public Panel getMediator() {return mediator;}
-  public abstract void show(TipoRopa tp);
+  public abstract void exec(TipoRopa tp);
+  public abstract boolean isFirstExec();
+  public abstract void setFirstExec(boolean firtExec);
+  
 }

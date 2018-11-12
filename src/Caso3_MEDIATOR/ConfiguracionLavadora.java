@@ -21,9 +21,52 @@ public class ConfiguracionLavadora implements Panel {
   }
   
   public void iniciar(TipoRopa tp) {
-    for(ParteLavadora parte: partes) {
-        parte.show(tp);
-    }
+      System.out.println("Inicia el proceso de Lavado");
+      System.out.println("Se realiza conexion con la Valvula para el agua");
+      for(ParteLavadora parte: partes) {
+          if (parte.getClass().equals(ParteValvula.class)){
+              parte.exec(tp);
+              parte.setFirstExec(false);
+          }
+      }
+      System.out.println("Se realiza conexion con el Calentador");
+      for(ParteLavadora parte: partes) {
+          if (parte.getClass().equals(ParteCalentador.class)){
+              parte.exec(tp);
+              parte.setFirstExec(false);
+          }
+      }
+      System.out.println("Se realiza conexion con la Valvula para los extras");
+      for(ParteLavadora parte: partes) {
+          if (parte.getClass().equals(ParteValvula.class)){
+              parte.exec(tp);
+          }
+      }
+      System.out.println("Se realiza conexion con el Tambor");
+      for(ParteLavadora parte: partes) {
+          if (parte.getClass().equals(ParteTambor.class)){
+              parte.exec(tp);
+              parte.setFirstExec(false);
+          }
+      }
+      System.out.println("\nInicio de Tiempo de Lavado en ejecucion...\n");
+      //Suponiendo que se ejecuta durante 5 min
+      for (int i=0;i<5;i++){
+          System.out.println("Checkeo de Temperatura #"+(i+1));
+          for(ParteLavadora parte: partes) {
+              if (parte.getClass().equals(ParteCalentador.class)){
+                  parte.exec(tp);
+              }
+          }
+      }
+      System.out.println("\nFin de Tiempo de Lavado...\n");
+      System.out.println("Se realiza conexion con el Tambor");
+      for(ParteLavadora parte: partes) {
+          if (parte.getClass().equals(ParteTambor.class)){
+              parte.exec(tp);
+          }
+      }
+      System.out.println("Fin del proceso de Lavado");
   }
   
   
