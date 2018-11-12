@@ -5,7 +5,7 @@
  */
 package iiiexamengrupo0203;
 
-import Caso4_CHAIN_OF_RESPONSABILITY.*;
+import Caso2_COMMAND.*;
 
 import Caso3_MEDIATOR.ConfiguracionLavadora;
 import Caso3_MEDIATOR.ParteCalentador;
@@ -13,6 +13,9 @@ import Caso3_MEDIATOR.ParteTambor;
 import Caso3_MEDIATOR.ParteValvula;
 import Caso3_MEDIATOR.TipoRopa;
 
+import Caso4_CHAIN_OF_RESPONSABILITY.*;
+
+import java.util.ArrayList;
 /**
  *
  * @author juan_
@@ -23,6 +26,43 @@ public class IIIExamenGrupo0203 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+        //Inicia Caso 2 - Command
+        
+        //Crear cola
+        ArrayList<ICommand> queue = new ArrayList<>();
+        
+        //Crear concrete commands
+        
+        ICommand enviarCorreo1 = new enviarCorreo();
+        ICommand enviarCorreo2 = new enviarCorreo();
+        
+        ICommand enviarSMS1 = new enviarSMS();
+        ICommand enviarSMS2 = new enviarSMS();
+        
+        ICommand repCancion1 = new reproducirCancion();
+        ICommand repCancion2 = new reproducirCancion();
+        
+        ICommand abrirGaleria = new abrirGaleria();
+        
+        queue.add(enviarCorreo1);
+        queue.add(enviarSMS1);
+        queue.add(repCancion1);
+        queue.add(enviarCorreo2);
+        queue.add(abrirGaleria);
+        queue.add(repCancion2);
+        queue.add(enviarSMS2);
+        
+        // Crear invocador
+        Invocador invoker;
+        
+        //Ejecutar el invocador con cada accion en la cola
+        for (ICommand comando : queue) {
+            invoker = new Invocador(comando);
+            invoker.run();
+        }
+        
+        //Fin Caso 2
       
         // Inicia Caso 3 - Mediator 
         System.out.println("");
@@ -32,6 +72,8 @@ public class IIIExamenGrupo0203 {
         System.out.println("------------------------------------------");
         //Tipo de Ropa para lavar
         TipoRopa seleccionada = TipoRopa.Algodon;
+
+
         
         //Se carga la configuracion al mediador
         ConfiguracionLavadora config = new ConfiguracionLavadora();
