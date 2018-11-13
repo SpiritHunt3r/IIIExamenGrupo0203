@@ -42,7 +42,7 @@ public class IIIExamenGrupo0203 {
         hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Dividir, 4);
         hist.addSavepoint(calc.save());
-        calc.aplicarOperacion(Operacion.Multiplicar, 8);
+        calc.aplicarOperacion(Operacion.Elevar, 8);
         hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Raiz,0);
         hist.addSavepoint(calc.save());
