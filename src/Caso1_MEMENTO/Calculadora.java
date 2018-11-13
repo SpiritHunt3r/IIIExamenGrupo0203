@@ -84,7 +84,7 @@ public class Calculadora {
                     Operacion = y + " ^ " + z + "= " + x;
                     break;
                 case Raiz:
-                    Operacion = "Raiz("+y+ ")=" + x;
+                    Operacion = "Raiz("+y+ ") = " + x;
                     break;
             }
         }

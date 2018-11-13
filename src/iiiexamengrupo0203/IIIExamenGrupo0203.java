@@ -59,7 +59,7 @@ public class IIIExamenGrupo0203 {
         calc.aplicarOperacion(Operacion.Restar, 88);
         hist.addSavepoint(calc.save());
         //Se restaura al antepenultimo save
-        calc.restore(hist.getSavepoint(1));
+        calc.restore(hist.getSavepoint(3));
         calc.aplicarOperacion(Operacion.Sumar, 10);
         hist.addSavepoint(calc.save());
         //Se devuelve a los valores iniciales
