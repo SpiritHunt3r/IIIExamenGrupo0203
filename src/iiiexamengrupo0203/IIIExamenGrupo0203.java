@@ -36,6 +36,11 @@ public class IIIExamenGrupo0203 {
         System.out.println("------------------------------------------");
         Historial hist = new Historial();
         Calculadora calc = new Calculadora();
+        /*
+        La calculadora funciona estilo windows quiere decir que el valor anterior en este caso X
+        que fue el resultado de la operacion anterior lo opera valga la redundancia con la opercion
+        selecionada ademas del dato adjunto en la funcion de aplicar Operacion
+        */
         //Se salva el estado Inicial
         hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Sumar, 5);
