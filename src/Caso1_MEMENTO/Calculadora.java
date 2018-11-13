@@ -15,6 +15,8 @@ public class Calculadora {
     private double z;
     private Historial hist = new Historial();
 
+    
+    
     public Calculadora(double x, double y, double z) {
         this.x = x;
         this.y = y;
