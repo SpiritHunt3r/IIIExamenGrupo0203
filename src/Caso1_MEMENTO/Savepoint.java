@@ -18,9 +18,9 @@ public class Savepoint {
     private double x;
     private double y;
     private double z;
-    private Operacion opt;
+    private String opt;
 
-    public Savepoint(double y,double z,double x, Operacion opt) {
+    public Savepoint(double x,double y,double z, String opt) {
         this.id = count++;
         this.y = y;
         this.z = z;
@@ -40,12 +40,16 @@ public class Savepoint {
         return z;
     }
     
-    public Operacion getOpt() {
+    public String getOpt() {
         return opt;
     }
 
     public int getId() {
         return id;
+    }
+
+    public static void setCount(int count) {
+        Savepoint.count = count;
     }
     
     

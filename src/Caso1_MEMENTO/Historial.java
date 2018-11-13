@@ -21,16 +21,28 @@ public class Historial {
     
     //Deshacer Simple
     public Savepoint getSavepoint() {
-        return savepoints.get(savepoints.size()-2);
+        try{
+            return savepoints.get(savepoints.size()-2);
+        }
+        catch (Exception e){
+            return savepoints.get(0);
+        }
     }
     
     //Deshacer Especifico
     public Savepoint getSavepoint(int i) {
+        if (i>=savepoints.size()){
+            return savepoints.get(0);
+        }
         return savepoints.get(savepoints.size()-1-i);
     }
     
     //Desgacer Completo
-    public Savepoint restore() {
-        return savepoints.get(0);
+    public Savepoint reiniciar() {
+        Savepoint s = savepoints.get(0);
+        savepoints.clear();
+        savepoints.add(s);
+        Savepoint.setCount(1);
+        return s;
     }
 }

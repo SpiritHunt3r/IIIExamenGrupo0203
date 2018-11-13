@@ -34,49 +34,28 @@ public class IIIExamenGrupo0203 {
         System.out.println("------------------------------------------");
         System.out.println("Ejecucion del Caso 1 - Memento");
         System.out.println("------------------------------------------");
-        Historial hist = new Historial();
-        Calculadora calc = new Calculadora();
-        /*
-        La calculadora funciona estilo windows quiere decir que el valor anterior en este caso X
-        que fue el resultado de la operacion anterior lo opera valga la redundancia con la opercion
-        selecionada ademas del dato adjunto en la funcion de aplicar Operacion
-        */
-        //Se salva el estado Inicial
-        hist.addSavepoint(calc.save());
-        calc.aplicarOperacion(Operacion.Sumar, 5);
-        hist.addSavepoint(calc.save());
-        calc.aplicarOperacion(Operacion.Dividir, 4);
-        hist.addSavepoint(calc.save());
-        calc.aplicarOperacion(Operacion.Elevar, 8);
-        hist.addSavepoint(calc.save());
-        calc.aplicarOperacion(Operacion.Raiz,0);
-        hist.addSavepoint(calc.save());
-        calc.aplicarOperacion(Operacion.Restar, 88);
-        hist.addSavepoint(calc.save());
-        calc.aplicarOperacion(Operacion.Dividir, 50);
-        hist.addSavepoint(calc.save());
-        //Se restaura al dato resultante de la operacion raiz.
-        calc.restore(hist.getSavepoint());
-        calc.aplicarOperacion(Operacion.Multiplicar, -1);
-        hist.addSavepoint(calc.save());
-        calc.aplicarOperacion(Operacion.Raiz,0);
-        hist.addSavepoint(calc.save());
-        calc.aplicarOperacion(Operacion.Restar, 88);
-        hist.addSavepoint(calc.save());
-        //Se restaura al antepenultimo save
-        calc.restore(hist.getSavepoint(3));
-        calc.aplicarOperacion(Operacion.Sumar, 10);
-        hist.addSavepoint(calc.save());
-        //Se devuelve a los valores iniciales
-        calc.restore(hist.restore());
-        calc.aplicarOperacion(Operacion.Sumar, 100);
-        hist.addSavepoint(calc.save());
-        calc.aplicarOperacion(Operacion.Raiz,0);
-        hist.addSavepoint(calc.save());
-        //Se restaura el ultimo savepoint
-        calc.restore(hist.getSavepoint());
-        
-        
+        //Cuando se crea la calculadora se guarda el estado inicial
+        Calculadora calc = new Calculadora(0,1,2);
+        calc.setX(25);
+        calc.setY(40);
+        calc.setZ(77);
+        calc.OperarX(Operacion.Raiz, 0);
+        calc.deshacer();
+        calc.OperarY(Operacion.Sumar, 1231);
+        calc.OperarZ(Operacion.Restar, 5554);
+        calc.setY(444);
+        calc.OperarY(Operacion.Dividir, 4);
+        calc.reiniciar();
+        calc.setX(44);
+        calc.setY(55);
+        calc.setZ(66);
+        calc.OperarX(Operacion.Multiplicar, 32);
+        calc.OperarY(Operacion.Dividir, 131);
+        calc.OperarZ(Operacion.Elevar, 2);
+        calc.OperarX(Operacion.Sumar, 444);
+        calc.deshacer(2);
+        calc.OperarX(Operacion.Restar, 1024);
+        calc.OperarZ(Operacion.Raiz, 0);
         
         //Fin Caso 1
         

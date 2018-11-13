@@ -10,88 +10,183 @@ package Caso1_MEMENTO;
  * @author juan_
  */
 public class Calculadora {
-    private double x=0;
-    private double y=0;
-    private double z=0;
-    private Operacion opt=null;
-   
-   
+    private double x;
+    private double y;
+    private double z;
+    private Historial hist = new Historial();
+
+    public Calculadora(double x, double y, double z) {
+        this.x = x;
+        this.y = y;
+        this.z = z;
+        this.save(x,y,z,null);
+    }
+
     
     
     
-    public void aplicarOperacion(Operacion opt,double val){
-        this.opt = opt;
-        this.y = x;
-        this.z = val;
-        System.out.println("Valor actual de X = "+x);
-        if (opt != Operacion.Raiz)
-        System.out.println("Valor a operar = "+val);
+    public void OperarX (Operacion opt,double val){
         switch (opt){
             case Sumar:
                 x += val;
-                System.out.println("Se aplico suma a X = "+x);
+                save (x,y,z,"Se sumo el valor "+val+" a X");
                 break;
             case Restar:
                 x -= val;
-                System.out.println("Se aplico resta a X = "+x);
+                save (x,y,z,"Se resto el valor "+val+" a X");
                 break;
             case Dividir:
                 x = x/val;
-                System.out.println("Se aplico division a X = "+x);
+                save (x,y,z,"Se dividio el valor "+val+" a X");
                 break;
             case Multiplicar:
                 x *= val;
-                System.out.println("Se aplico multiplicacion a X = "+x);
+                save (x,y,z,"Se multiplico el valor "+val+" a X");
                 break;
             case Elevar:
                 x = Math.pow(x, val);
-                System.out.println("Se elevo X = "+x);
+                save (x,y,z,"Se elevo el valor "+val+" a X");
                 break;
             case Raiz:
                 x = Math.sqrt(x);
-                System.out.println("Se aplico raiz a X = "+x);
+                save (x,y,z,"Se obtuvo la raiz de X");
                 break;
-        }
-        
-        System.out.println("");
+            }
+    }
+    
+    
+    public void OperarY (Operacion opt,double val){
+        switch (opt){
+            case Sumar:
+                y += val;
+                save (x,y,z,"Se sumo el valor "+val+" a Y");
+                break;
+            case Restar:
+                y -= val;
+                save (x,y,z,"Se resto el valor "+val+" a Y");
+                break;
+            case Dividir:
+                y = y/val;
+                save (x,y,z,"Se dividio el valor "+val+" a Y");
+                break;
+            case Multiplicar:
+                y *= val;
+                save (x,y,z,"Se multiplico el valor "+val+" a Y");
+                break;
+            case Elevar:
+                y = Math.pow(y, val);
+                save (x,y,z,"Se elevo el valor "+val+" a Y");
+                break;
+            case Raiz:
+                y = Math.sqrt(y);
+                save (x,y,z,"Se obtuvo la raiz de Y");
+                break;
+            }
+    }
+    
+    
+    public void OperarZ (Operacion opt,double val){
+        switch (opt){
+            case Sumar:
+                z += val;
+                save (x,y,z,"Se sumo el valor "+val+" a Z");
+                break;
+            case Restar:
+                z -= val;
+                save (x,y,z,"Se resto el valor "+val+" a Z");
+                break;
+            case Dividir:
+                z = z/val;
+                save (x,y,z,"Se dividio el valor "+val+" a Z");
+                break;
+            case Multiplicar:
+                z *= val;
+                save (x,y,z,"Se multiplico el valor "+val+" a Z");
+                break;
+            case Elevar:
+                z = Math.pow(z, val);
+                save (x,y,z,"Se elevo el valor "+val+" a Z");
+                break;
+            case Raiz:
+                z = Math.sqrt(z);
+                save (x,y,z,"Se obtuvo la raiz de Z");
+                break;
+            }
+    }
+    
+    
+
+    public void setX(double x) {
+        this.x = x;
+        save (x,y,z,"Asigano el valor "+x+" a X");
     }
 
-    public Savepoint save() {
-        Savepoint s = new Savepoint(y,z,x,opt);
-        System.out.println("Calculadora: Guardando estado actual de X como #"+s.getId()+"\n");
-        return s;
+    public void setY(double y) {
+        this.y = y;
+        save (x,y,z,"Asigano el valor "+y+" a Y");
     }
-    public void restore(Savepoint m) {
-        x = m.getX();
-        y = m.getY();
-        z = m.getZ();
-        String Operacion = "";
-        opt = m.getOpt();
-        if (opt != null){
-            switch(opt){
-                case Sumar:
-                    Operacion = y + " + " + z + "= " + x;
-                    break;
-                case Restar:
-                    break;
-                case Dividir:
-                    Operacion = y + " / " + z + "= " + x;
-                    break;
-                case Multiplicar:
-                    Operacion = y + " * " + z + "= " + x;
-                    break;
-                case Elevar:
-                    Operacion = y + " ^ " + z + "= " + x;
-                    break;
-                case Raiz:
-                    Operacion = "Raiz("+y+ ") = " + x;
-                    break;
-            }
+
+    
+    public void setZ(double z) {
+        this.z = z;
+        save (x,y,z,"Asigano el valor "+z+" a Z");
+    }
+
+    public void save(double a, double b, double c, String opt) {
+        Savepoint s = new Savepoint(a,b,c,opt);
+        if (opt!=null){
+            System.out.println(opt);
         }
-        if (opt!=null)
-        System.out.println("Calculadora: Restaurando al Savepoint #"+ m.getId()+" : Con la operacion "+ Operacion +"\n");
-        if (opt==null)
-        System.out.println("Calculadora: Restauranda al Savepoint Inicial\n");
+        System.out.println(this.estadoActual());
+        System.out.println("Calculadora: Guardando estado actual #"+s.getId()+"\n");
+        hist.addSavepoint(s);
     }
+    
+    
+    public void deshacer() {
+        Savepoint m = hist.getSavepoint();
+        printRestore(m);
+    }
+    
+    public void deshacer(int i) {
+        Savepoint m = hist.getSavepoint(i);
+        printRestore(m);
+    }
+    
+    
+    public void reiniciar() {
+        Savepoint m = hist.reiniciar();
+        printRestore(m);
+    }
+    
+    private void printRestore(Savepoint m){
+        String opt = m.getOpt();
+        if (opt!=null){
+            System.out.println("\n---------------------------------------------------");
+            System.out.println("Estado Actual: "+this.estadoActual());
+            x = m.getX();
+            y = m.getY();
+            z = m.getZ();
+            System.out.println("Calculadora: Restaurando al Savepoint #"+ m.getId()+" : Donde se "+ opt);
+            System.out.println("Estado Actual: "+this.estadoActual());
+            System.out.println("---------------------------------------------------\n\n");
+        }
+        else{
+            System.out.println("\n---------------------------------------------------");
+            System.out.println(this.estadoActual());
+            x = m.getX();
+            y = m.getY();
+            z = m.getZ();
+            System.out.println("Calculadora: Restauranda al Savepoint Inicial");
+            System.out.println(this.estadoActual());
+            System.out.println("---------------------------------------------------\n\n");
+        }
+    }
+    
+    public String estadoActual(){
+        return "X= "+x+"\t\tY= "+y+"\t\tZ= "+z;
+    }
+
+    
 }
 
