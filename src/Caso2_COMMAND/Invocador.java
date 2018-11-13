@@ -4,9 +4,6 @@
  * and open the template in the editor.
  */
 package Caso2_COMMAND;
-
-import java.util.ArrayList;
-
 /**
  *
  * @author ayma-93
