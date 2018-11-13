@@ -5,6 +5,9 @@
  */
 package iiiexamengrupo0203;
 
+import Caso1_MEMENTO.Calculadora;
+import Caso1_MEMENTO.Historial;
+import Caso1_MEMENTO.Operacion;
 import Caso2_COMMAND.*;
 
 import Caso3_MEDIATOR.ConfiguracionLavadora;
@@ -26,6 +29,42 @@ public class IIIExamenGrupo0203 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
+         //Inicia Caso 1 - Memento
+        System.out.println("------------------------------------------");
+        System.out.println("Ejecucion del Caso 1 - Memento");
+        System.out.println("------------------------------------------");
+        Historial caretaker = new Historial();
+        Calculadora calc = new Calculadora();
+        //Se salva el estado Inicial
+        caretaker.addSavepoint(calc.save());
+        calc.aplicarOperacion(Operacion.Sumar, 5);
+        caretaker.addSavepoint(calc.save());
+        calc.aplicarOperacion(Operacion.Dividir, 4);
+        caretaker.addSavepoint(calc.save());
+        calc.aplicarOperacion(Operacion.Multiplicar, 8);
+        caretaker.addSavepoint(calc.save());
+        calc.aplicarOperacion(Operacion.Raiz,0);
+        caretaker.addSavepoint(calc.save());
+        calc.aplicarOperacion(Operacion.Restar, 88);
+        calc.aplicarOperacion(Operacion.Dividir, 50);
+        //Se restaura al dato resultante de la operacion raiz.
+        calc.restore(caretaker.getSavepoint());
+        calc.aplicarOperacion(Operacion.Raiz,0);
+        caretaker.addSavepoint(calc.save());
+        calc.aplicarOperacion(Operacion.Restar, 88);
+        caretaker.addSavepoint(calc.save());
+        //Se restaura al antepenultimo save
+        calc.restore(caretaker.getSavepoint(3));
+        calc.aplicarOperacion(Operacion.Sumar, 10);
+        caretaker.addSavepoint(calc.save());
+        calc.restore(caretaker.restore());
+        calc.aplicarOperacion(Operacion.Sumar, 100);
+        //Se restaura el penultimo save
+        calc.restore(caretaker.getSavepoint(2));
+        calc.aplicarOperacion(Operacion.Raiz,0);
+        
+        //Fin Caso 1
         
         //Inicia Caso 2 - Command
         System.out.println("");
@@ -77,7 +116,7 @@ public class IIIExamenGrupo0203 {
         System.out.println("Ejecucion del Caso 3 - Mediator");
         System.out.println("------------------------------------------");
         //Tipo de Ropa para lavar
-        TipoRopa seleccionada = TipoRopa.Algodon;
+        TipoRopa seleccionada = TipoRopa.Jeans;
 
 
         
