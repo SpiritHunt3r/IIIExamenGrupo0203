@@ -11,6 +11,8 @@ package Caso1_MEMENTO;
  */
 public class Calculadora {
     private double x=0;
+    private double y=0;
+    private double z=0;
     private Operacion opt=null;
    
    
@@ -19,6 +21,8 @@ public class Calculadora {
     
     public void aplicarOperacion(Operacion opt,double val){
         this.opt = opt;
+        this.y = x;
+        this.z = val;
         System.out.println("Valor actual de X = "+x);
         if (opt != Operacion.Raiz)
         System.out.println("Valor a operar = "+val);
@@ -53,17 +57,41 @@ public class Calculadora {
     }
 
     public Savepoint save() {
-        Savepoint s = new Savepoint(x,opt);
+        Savepoint s = new Savepoint(y,z,x,opt);
         System.out.println("Calculadora: Guardando estado actual de X como #"+s.getId()+"\n");
         return s;
     }
     public void restore(Savepoint m) {
         x = m.getX();
+        y = m.getY();
+        z = m.getZ();
+        String Operacion = "";
         opt = m.getOpt();
+        if (opt != null){
+            switch(opt){
+                case Sumar:
+                    Operacion = y + "+" + z + "=" + x;
+                    break;
+                case Restar:
+                    break;
+                case Dividir:
+                    Operacion = y + "/" + z + "=" + x;
+                    break;
+                case Multiplicar:
+                    Operacion = y + "*" + z + "=" + x;
+                    break;
+                case Elevar:
+                    Operacion = y + "^" + z + "=" + x;
+                    break;
+                case Raiz:
+                    Operacion = "Raiz("+y+ ")=" + x;
+                    break;
+            }
+        }
         if (opt!=null)
-        System.out.println("Calculadora: Restaurando al Savepoint #"+ m.getId()+" : X = " + x + " y la Operacion realizada para obtener valor fue "+m.getOpt()+"\n");
+        System.out.println("Calculadora: Restaurando al Savepoint #"+ m.getId()+" : con la operacion "+ Operacion +"\n");
         if (opt==null)
-        System.out.println("Calculadora: Restauranda al Savepoint Inicial: X = " + x +"\n");
+        System.out.println("Calculadora: Restauranda al Savepoint Inicial\n");
     }
 }
 
