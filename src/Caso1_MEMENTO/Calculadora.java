@@ -70,18 +70,18 @@ public class Calculadora {
         if (opt != null){
             switch(opt){
                 case Sumar:
-                    Operacion = y + "+" + z + "=" + x;
+                    Operacion = y + " + " + z + "= " + x;
                     break;
                 case Restar:
                     break;
                 case Dividir:
-                    Operacion = y + "/" + z + "=" + x;
+                    Operacion = y + " / " + z + "= " + x;
                     break;
                 case Multiplicar:
-                    Operacion = y + "*" + z + "=" + x;
+                    Operacion = y + " * " + z + "= " + x;
                     break;
                 case Elevar:
-                    Operacion = y + "^" + z + "=" + x;
+                    Operacion = y + " ^ " + z + "= " + x;
                     break;
                 case Raiz:
                     Operacion = "Raiz("+y+ ")=" + x;
@@ -89,7 +89,7 @@ public class Calculadora {
             }
         }
         if (opt!=null)
-        System.out.println("Calculadora: Restaurando al Savepoint #"+ m.getId()+" : con la operacion "+ Operacion +"\n");
+        System.out.println("Calculadora: Restaurando al Savepoint #"+ m.getId()+" : Con la operacion "+ Operacion +"\n");
         if (opt==null)
         System.out.println("Calculadora: Restauranda al Savepoint Inicial\n");
     }

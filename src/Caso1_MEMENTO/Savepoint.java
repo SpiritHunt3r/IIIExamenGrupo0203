@@ -39,10 +39,7 @@ public class Savepoint {
     public double getZ() {
         return z;
     }
-
-
-
-
+    
     public Operacion getOpt() {
         return opt;
     }
@@ -50,6 +47,11 @@ public class Savepoint {
     public int getId() {
         return id;
     }
+
+    public static void setCount(int count) {
+        Savepoint.count = count;
+    }
+    
     
     
     

@@ -31,6 +31,10 @@ public class Historial {
     
     //Desgacer Completo
     public Savepoint restore() {
-        return savepoints.get(0);
+        Savepoint init = savepoints.get(0);
+        savepoints.clear();
+        savepoints.add(init);
+        Savepoint.setCount(1);
+        return init;
     }
 }

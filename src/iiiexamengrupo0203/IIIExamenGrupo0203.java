@@ -59,16 +59,15 @@ public class IIIExamenGrupo0203 {
         calc.aplicarOperacion(Operacion.Restar, 88);
         hist.addSavepoint(calc.save());
         //Se restaura al antepenultimo save
-        calc.restore(hist.getSavepoint(3));
+        calc.restore(hist.getSavepoint(1));
         calc.aplicarOperacion(Operacion.Sumar, 10);
         hist.addSavepoint(calc.save());
         //Se devuelve a los valores iniciales
         calc.restore(hist.restore());
         calc.aplicarOperacion(Operacion.Sumar, 100);
         hist.addSavepoint(calc.save());
-        //Se restaura el penultimo save
-        calc.restore(hist.getSavepoint(2));
         calc.aplicarOperacion(Operacion.Raiz,0);
+        hist.addSavepoint(calc.save());
         //Se restaura el ultimo savepoint
         calc.restore(hist.getSavepoint());
         
