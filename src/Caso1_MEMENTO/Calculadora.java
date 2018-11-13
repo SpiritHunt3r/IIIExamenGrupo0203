@@ -53,16 +53,16 @@ public class Calculadora {
 
     public Savepoint save() {
         Savepoint s = new Savepoint(x,opt);
-        System.out.println("Calculadora: Guardando estado actual de X\n");
+        System.out.println("Calculadora: Guardando estado actual de X como #"+s.getId()+"\n");
         return s;
     }
     public void restore(Savepoint m) {
         x = m.getX();
         opt = m.getOpt();
         if (opt!=null)
-        System.out.println("Calculadora: Restaurando al Savepoint: X = " + x + " y la Operacion realizada para obtener valor fue "+m.getOpt()+"\n");
+        System.out.println("Calculadora: Restaurando al Savepoint #"+ m.getId()+" : X = " + x + " y la Operacion realizada para obtener valor fue "+m.getOpt()+"\n");
         if (opt==null)
-        System.out.println("Calculadora: Restauranda al Savepoint Inicial: X = " + x );
+        System.out.println("Calculadora: Restauranda al Savepoint Inicial: X = " + x +"\n");
     }
 }
 

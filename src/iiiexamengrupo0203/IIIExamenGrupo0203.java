@@ -60,9 +60,14 @@ public class IIIExamenGrupo0203 {
         caretaker.addSavepoint(calc.save());
         calc.restore(caretaker.restore());
         calc.aplicarOperacion(Operacion.Sumar, 100);
+        caretaker.addSavepoint(calc.save());
         //Se restaura el penultimo save
         calc.restore(caretaker.getSavepoint(2));
         calc.aplicarOperacion(Operacion.Raiz,0);
+        //Se restaura el ultimo savepoint
+        calc.restore(caretaker.getSavepoint());
+        
+        
         
         //Fin Caso 1
         

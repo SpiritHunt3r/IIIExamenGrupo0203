@@ -13,10 +13,13 @@ import java.util.concurrent.atomic.AtomicInteger;
  * @author juan_
  */
 public class Savepoint {
+    private static int count =0;
+    private int id;
     private double x;
     private Operacion opt;
 
     public Savepoint(double x, Operacion opt) {
+        this.id = count++;
         this.x = x;
         this.opt = opt;
     }
@@ -27,6 +30,10 @@ public class Savepoint {
 
     public Operacion getOpt() {
         return opt;
+    }
+
+    public int getId() {
+        return id;
     }
     
     
