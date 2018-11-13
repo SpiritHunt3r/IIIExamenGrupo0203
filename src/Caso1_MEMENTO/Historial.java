@@ -18,15 +18,18 @@ public class Historial {
         savepoints.add(m);
     }
 
+    
+    //Deshacer Simple
     public Savepoint getSavepoint() {
-        return savepoints.get(savepoints.size()-1);
+        return savepoints.get(savepoints.size()-2);
     }
     
-    //Aun no se si debo eliminar los siguientes
+    //Deshacer Especifico
     public Savepoint getSavepoint(int i) {
         return savepoints.get(savepoints.size()-1-i);
     }
     
+    //Desgacer Completo
     public Savepoint restore() {
         return savepoints.get(0);
     }

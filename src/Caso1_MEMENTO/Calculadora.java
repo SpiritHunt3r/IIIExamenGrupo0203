@@ -48,6 +48,7 @@ public class Calculadora {
                 System.out.println("Se aplico raiz a X = "+x);
                 break;
         }
+        
         System.out.println("");
     }
 

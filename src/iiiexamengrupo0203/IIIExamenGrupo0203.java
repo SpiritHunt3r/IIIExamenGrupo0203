@@ -34,38 +34,43 @@ public class IIIExamenGrupo0203 {
         System.out.println("------------------------------------------");
         System.out.println("Ejecucion del Caso 1 - Memento");
         System.out.println("------------------------------------------");
-        Historial caretaker = new Historial();
+        Historial hist = new Historial();
         Calculadora calc = new Calculadora();
         //Se salva el estado Inicial
-        caretaker.addSavepoint(calc.save());
+        hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Sumar, 5);
-        caretaker.addSavepoint(calc.save());
+        hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Dividir, 4);
-        caretaker.addSavepoint(calc.save());
+        hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Multiplicar, 8);
-        caretaker.addSavepoint(calc.save());
+        hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Raiz,0);
-        caretaker.addSavepoint(calc.save());
+        hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Restar, 88);
+        hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Dividir, 50);
+        hist.addSavepoint(calc.save());
         //Se restaura al dato resultante de la operacion raiz.
-        calc.restore(caretaker.getSavepoint());
+        calc.restore(hist.getSavepoint());
+        calc.aplicarOperacion(Operacion.Multiplicar, -1);
+        hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Raiz,0);
-        caretaker.addSavepoint(calc.save());
+        hist.addSavepoint(calc.save());
         calc.aplicarOperacion(Operacion.Restar, 88);
-        caretaker.addSavepoint(calc.save());
+        hist.addSavepoint(calc.save());
         //Se restaura al antepenultimo save
-        calc.restore(caretaker.getSavepoint(3));
+        calc.restore(hist.getSavepoint(3));
         calc.aplicarOperacion(Operacion.Sumar, 10);
-        caretaker.addSavepoint(calc.save());
-        calc.restore(caretaker.restore());
+        hist.addSavepoint(calc.save());
+        //Se devuelve a los valores iniciales
+        calc.restore(hist.restore());
         calc.aplicarOperacion(Operacion.Sumar, 100);
-        caretaker.addSavepoint(calc.save());
+        hist.addSavepoint(calc.save());
         //Se restaura el penultimo save
-        calc.restore(caretaker.getSavepoint(2));
+        calc.restore(hist.getSavepoint(2));
         calc.aplicarOperacion(Operacion.Raiz,0);
         //Se restaura el ultimo savepoint
-        calc.restore(caretaker.getSavepoint());
+        calc.restore(hist.getSavepoint());
         
         
         
