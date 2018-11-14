@@ -7,7 +7,7 @@ package iiiexamengrupo0203;
 
 import Caso1_MEMENTO.Calculadora;
 import Caso1_MEMENTO.Historial;
-import Caso1_MEMENTO.Operacion;
+import Caso1_MEMENTO.Operaciones;
 import Caso2_COMMAND.*;
 
 import Caso3_MEDIATOR.ConfiguracionLavadora;
@@ -39,23 +39,39 @@ public class IIIExamenGrupo0203 {
         calc.setX(25);
         calc.setY(40);
         calc.setZ(77);
-        calc.OperarX(Operacion.Raiz, 0);
+        calc.OperarX(Operaciones.Raiz, 0);
         calc.deshacer();
-        calc.OperarY(Operacion.Sumar, 1231);
-        calc.OperarZ(Operacion.Restar, 5554);
+        calc.OperarY(Operaciones.Sumar, 1231);
+        calc.OperarZ(Operaciones.Restar, 5554);
         calc.setY(444);
-        calc.OperarY(Operacion.Dividir, 4);
-        calc.reiniciar();
+        //Salva el primer save point
+        calc.save();
+        calc.OperarY(Operaciones.Dividir, 4);
         calc.setX(44);
         calc.setY(55);
+        //Salva el segundo save point
+        calc.save();
         calc.setZ(66);
-        calc.OperarX(Operacion.Multiplicar, 32);
-        calc.OperarY(Operacion.Dividir, 131);
-        calc.OperarZ(Operacion.Elevar, 2);
-        calc.OperarX(Operacion.Sumar, 444);
+        calc.OperarX(Operaciones.Multiplicar, 32);
+        calc.OperarY(Operaciones.Dividir, 131);
+        calc.OperarZ(Operaciones.Elevar, 2);
+        //Salva el tercer save point
+        calc.save();
+        calc.OperarX(Operaciones.Sumar, 444);
+        //Salva el cuarto save point
+        calc.save();
         calc.deshacer(2);
-        calc.OperarX(Operacion.Restar, 1024);
-        calc.OperarZ(Operacion.Raiz, 0);
+        calc.deshacer(4);
+        calc.deshacer(3);
+        calc.OperarX(Operaciones.Restar, 1024);
+        calc.reiniciar();
+        calc.setZ(66);
+        calc.OperarX(Operaciones.Multiplicar, 32);
+        calc.OperarY(Operaciones.Dividir, 131);
+        calc.OperarZ(Operaciones.Elevar, 2);
+        //Salva el primero save point
+        calc.save();
+        calc.OperarZ(Operaciones.Raiz, 0);
         
         //Fin Caso 1
         
