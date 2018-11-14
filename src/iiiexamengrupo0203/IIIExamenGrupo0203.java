@@ -83,38 +83,36 @@ public class IIIExamenGrupo0203 {
         System.out.println("------------------------------------------");
         
         
-        //Crear cola
-        ArrayList<ICommand> queue = new ArrayList<>();
-        
+        // Se instancia el receptor que tiene las funcionalidades de los concrete commands
+        Receptor receptor = new Receptor();
+               
         //Crear concrete commands
         
-        ICommand enviarCorreo1 = new enviarCorreo();
-        ICommand enviarCorreo2 = new enviarCorreo();
+        ICommand enviarCorreo1 = new enviarCorreo(receptor);
+        ICommand enviarCorreo2 = new enviarCorreo(receptor);
         
-        ICommand enviarSMS1 = new enviarSMS();
-        ICommand enviarSMS2 = new enviarSMS();
+        ICommand enviarSMS1 = new enviarSMS(receptor);
+        ICommand enviarSMS2 = new enviarSMS(receptor);
         
-        ICommand repCancion1 = new reproducirCancion();
-        ICommand repCancion2 = new reproducirCancion();
+        ICommand repCancion1 = new reproducirCancion(receptor);
+        ICommand repCancion2 = new reproducirCancion(receptor);
         
-        ICommand abrirGaleria = new abrirGaleria();
+        ICommand abrirGaleria = new abrirGaleria(receptor);
         
-        queue.add(enviarCorreo1);
-        queue.add(enviarSMS1);
-        queue.add(repCancion1);
-        queue.add(enviarCorreo2);
-        queue.add(abrirGaleria);
-        queue.add(repCancion2);
-        queue.add(enviarSMS2);
+        //Se crea el invocador
+        Invocador invoker = new Invocador();
         
-        // Crear invocador
-        Invocador invoker;
+        //Se agregan procesos a la cola
+        invoker.addProceso(enviarCorreo1);
+        invoker.addProceso(enviarSMS1);
+        invoker.addProceso(repCancion1);
+        invoker.addProceso(enviarCorreo2);
+        invoker.addProceso(abrirGaleria);
+        invoker.addProceso(repCancion2);
+        invoker.addProceso(enviarSMS2);
         
-        //Ejecutar el invocador con cada accion en la cola
-        for (ICommand comando : queue) {
-            invoker = new Invocador(comando);
-            invoker.run();
-        }
+        //Se ejecuta el invocador
+        invoker.run();
         
         //Fin Caso 2
       
