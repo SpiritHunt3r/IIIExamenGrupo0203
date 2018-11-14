@@ -13,20 +13,26 @@ import java.util.ArrayList;
  */
 public class Historial {
     private ArrayList<Savepoint> savepoints = new ArrayList<>();
+    private ArrayList<Operacion> operations = new ArrayList<>();
+    
+    
+    
+    public void addOperation(Operacion m) {
+        operations.add(m);
+    }
 
     public void addSavepoint(Savepoint m) {
         savepoints.add(m);
     }
-
+    
     
     //Deshacer Simple
-    public Savepoint getSavepoint() {
-        try{
-            return savepoints.get(savepoints.size()-2);
-        }
-        catch (Exception e){
-            return savepoints.get(0);
-        }
+    public Operacion getSavepoint() {
+        
+        if (operations.size() <= 1)
+            return operations.get(0);
+        operations.remove(operations.size()-1);
+        return operations.get(operations.size()-1);
     }
     
     //Deshacer Especifico
@@ -34,7 +40,7 @@ public class Historial {
         if (i>=savepoints.size()){
             return savepoints.get(0);
         }
-        return savepoints.get(savepoints.size()-1-i);
+        return savepoints.get(i);
     }
     
     //Desgacer Completo
