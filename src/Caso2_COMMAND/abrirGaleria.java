@@ -13,8 +13,8 @@ public class abrirGaleria implements ICommand {
 
     private Receptor receptor;
 
-    public abrirGaleria() {
-        this.receptor = new Receptor();
+    public abrirGaleria(Receptor receptor) {
+        this.receptor = receptor;
     }
     
     @Override

@@ -13,8 +13,8 @@ public class enviarCorreo implements ICommand{
     
     private Receptor receptor;
 
-    public enviarCorreo() {
-        this.receptor = new Receptor();
+    public enviarCorreo(Receptor receptor) {
+        this.receptor = receptor;
     }
     
     @Override

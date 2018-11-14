@@ -13,9 +13,9 @@ public class reproducirCancion implements ICommand{
     
     private Receptor receptor;
 
-    public reproducirCancion() {
+    public reproducirCancion(Receptor receptor) {
         
-        this.receptor = new Receptor();
+        this.receptor = receptor;
         
     }
 

@@ -13,8 +13,8 @@ public class enviarSMS implements ICommand{
 
     private Receptor receptor;
 
-    public enviarSMS() {
-        this.receptor = new Receptor();
+    public enviarSMS(Receptor receptor) {
+        this.receptor = receptor;
     }
     
     

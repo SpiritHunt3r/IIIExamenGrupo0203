@@ -4,24 +4,33 @@
  * and open the template in the editor.
  */
 package Caso2_COMMAND;
+
+import java.util.ArrayList;
+
 /**
  *
  * @author ayma-93
  */
 public class Invocador{
     
-    private ICommand orden ;
+    private ArrayList<ICommand> procesos ;
 
-    public Invocador(ICommand orden) {
-        this.orden = orden;
+    public Invocador() {
+        procesos = new ArrayList<>();
     }
 
     public void run() {
         
         //super.run();
-        orden.ejecutar();
+        procesos.forEach((proceso) -> {
+            System.out.println("");
+            proceso.ejecutar();
+        });
         
     }
      
+    public void addProceso(ICommand proceso){
+        procesos.add(proceso);
+    }
     
 }
